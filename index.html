@@ -12,6 +12,7 @@
 
         #comic-container {
             display: none;
+			text-align: center;
         }
 		body { color: rgb(230,230,242); background-color: rgb(29,42,50); }
 		a {text-decoration: none; color: rgb(230,200,120); }
@@ -19,11 +20,11 @@
 		p { max-width: 720px }
 		big { font-family: Verdana, Tahoma, helvetica; font-size: 12pt; font-weight: bold }
 		div { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; }
+		div.in { padding: 20px; position: absolute; left: 0px; top: 0px; }
 		div.content { min-width: 720px; border: 1px solid rgb(133,162,179); background-color: rgb(61,80,92); padding: 3px 12px; }
     </style>
 
     <script>
-        // Your comic data array
         const comicData = [
 			{"date":"04/01/2003", "file":"popehat.gif", "title" : "In The Spirit"},
 			{"date":"20/12/2002", "file":"sucks.gif", "title" : "Dead Things"},
@@ -158,12 +159,13 @@
             const selectedComic = comicData[index];
             const comic = document.getElementById("comic");
 			const comicContainer = document.getElementById("comic-container");
+			const content = document.getElementsByClassName("content")[0];
             comic.innerHTML = '';
 
-            const title = document.createElement("h2");
+            const title = document.createElement("b");
             title.textContent = selectedComic.title;
 
-            const date = document.createElement("p");
+            const date = document.createElement("span");
             date.textContent = `Originally published: ${selectedComic.date}`;
 
             const image = document.createElement("img");
@@ -171,10 +173,15 @@
             image.alt = selectedComic.title;
 
             comic.appendChild(title);
+			comic.appendChild(document.createElement("br"));
             comic.appendChild(date);
+			comic.appendChild(document.createElement("br"));
+			comic.appendChild(document.createElement("br"));
             comic.appendChild(image);
 
             comicContainer.style.display = "block";
+			content.style.backgroundColor="black";
+			content.style.color="white";
             document.getElementById("index-container").style.display = "none";
         }
 
@@ -216,13 +223,18 @@
         function toggleIndex() {
             const indexContainer = document.getElementById("index-container");
             const comicContainer = document.getElementById("comic-container");
+			const content = document.getElementsByClassName("content")[0];
             
             if (indexContainer.style.display === "none") {
                 indexContainer.style.display = "block";
                 comicContainer.style.display = "none";
+				content.style.backgroundColor="rgb(61,80,92)";
+				content.style.color="rgb(230,230,242)";
             } else {
                 indexContainer.style.display = "none";
                 comicContainer.style.display = "block";
+				content.style.backgroundColor="black";
+				content.style.color="white";
             }
         }
 
@@ -233,31 +245,43 @@
     </script>
 </head>
 <body>
-		<div id="comic-container">
-			<!-- Comic container -->
-			<div id="comic">
-				<!-- Comic content will be displayed here -->
-			</div>
-			<!-- Navigation buttons -->
-			<button onclick="previousComic()">Previous</button>
-			<button onclick="nextComic()">Next</button>
-			<button onclick="toggleIndex()">Index</button>
-		</div>
+		<div class="in">
+			<div class="content">
+				<div id="comic-container">
+					<br>
+					<big>The Angband Comic</big><br>
+					by <b>Jon Cole and Devin Kent</b><br>
+					<br>
+					<div id="comic">
+						<!-- Comic content will be displayed here -->
+					</div>
+					<!-- Navigation buttons -->
+					<br/>
+					<a href="#" onclick="toggleIndex()">Index</a>
+					|
+					<a href="#" onclick="previousComic()">Previous Strip</a>
+					|
+					<a href="#" onclick="nextComic()">Next Strip</a>
+					<br/>
+					<br/>
+				</div>
 
-		<!-- Index list container -->
-		<div id="index-container">
-			<p><img src="list.jpg" align="left" style="margin-right: 10px"><big>The Angband Comic archives</big></p>
+				<!-- Index list container -->
+				<div id="index-container">
+					<p><img src="list.jpg" align="left" style="margin-right: 10px"><big>The Angband Comic archives</big></p>
 
-			<p>
+					<p>
 
-			This is an archive of an Angband inspired online comic strip written by <b>Jon Cole and Devin Kent</b> back in 2001 and 2002.
-			The original website disappeared from the face of the web long time ago.  I was unable to contact the authors, so I decided
-			to make this gem available online again, even without their consent.  I hope they will reappear one day.</p>
+					This is an archive of an Angband inspired online comic strip written by <b>Jon Cole and Devin Kent</b> back in 2001 and 2002.
+					The original website disappeared from the face of the web long time ago.  I was unable to contact the authors, so I decided
+					to make this gem available online again, even without their consent.  I hope they will reappear one day.</p>
 
-			<p>I would like to thank <i>Dominik</i> who helped me with restoring this archive.</p>
-			<hr/>
-			<div id="index-list">
-				<!-- Index list will be displayed here -->
+					<p>I would like to thank <i>Dominik</i> who helped me with restoring this archive.</p>
+					<hr/>
+					<div id="index-list">
+						<!-- Index list will be displayed here -->
+					</div>
+				</div>
 			</div>
 		</div>
 </body>
