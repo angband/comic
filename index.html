@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Angband.oook.cz - The Angband Comic archives</title>
+    <!-- Include CSS or any necessary stylesheets -->
+    <!-- Add any head content required -->
+
+    <style>
+        #index-container {
+            display: block;
+        }
+
+        #comic-container {
+            display: none;
+        }
+		body { color: rgb(230,230,242); background-color: rgb(29,42,50); }
+		a {text-decoration: none; color: rgb(230,200,120); }
+		a:hover {text-decoration: underline; color: rgb(255,240,80); }
+		p { max-width: 720px }
+		big { font-family: Verdana, Tahoma, helvetica; font-size: 12pt; font-weight: bold }
+		div { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; }
+		div.content { min-width: 720px; border: 1px solid rgb(133,162,179); background-color: rgb(61,80,92); padding: 3px 12px; }
+    </style>
+
+    <script>
+        // Your comic data array
+        const comicData = [
+			{"date":"04/01/2003", "file":"popehat.gif", "title" : "In The Spirit"},
+			{"date":"20/12/2002", "file":"sucks.gif", "title" : "Dead Things"},
+			{"date":"18/12/2002", "file":"line.gif", "title" : "Early Bird"},
+			{"date":"16/12/2002", "file":"maze.gif", "title" : "Passing Time"},
+			{"date":"11/12/2002", "file":"dagain.gif", "title" : "BSV Invasion!"},
+			{"date":"09/12/2002", "file":"archery.gif", "title" : "Ye Olde Archery Contest"},
+			{"date":"06/12/2002", "file":"doggy.gif", "title" : "Fun And Games"},
+			{"date":"04/12/2002", "file":"bahaha.gif", "title" : "Belated Mail"},
+			{"date":"02/12/2002", "file":"drunkplus.gif", "title" : "Worst Comeback Comic Ever"},
+			{"date":"02/08/2002", "file":"games.gif", "title" : "Drinking Games"},
+			{"date":"31/07/2002", "file":"pope.gif", "title" : "Papal Guard"},
+			{"date":"29/07/2002", "file":"zang.gif", "title" : "Altered States"},
+			{"date":"26/07/2002", "file":"rop.gif", "title" : "Father Molestalot"},
+			{"date":"24/07/2002", "file":"dclone.gif", "title" : "Travesty"},
+			{"date":"22/07/2002", "file":"elfmeat.gif", "title" : "Bazaar"},
+			{"date":"19/07/2002", "file":"worse.gif", "title" : "It Only Gets Worse"},
+			{"date":"17/07/2002", "file":"fiend.gif", "title" : "Sex Sells"},
+			{"date":"15/07/2002", "file":"splat.gif", "title" : "Quick Succession"},
+			{"date":"12/07/2002", "file":"billy.gif", "title" : "Devin's Opus"},
+			{"date":"10/07/2002", "file":"smoke.gif", "title" : "Smoker's Cough"},
+			{"date":"08/07/2002", "file":"bunk.gif", "title" : "Bunk Buddies"},
+			{"date":"05/07/2002", "file":"meat.gif", "title" : "@ Meat"},
+			{"date":"03/07/2002", "file":"poor.gif", "title" : "Chameleon"},
+			{"date":"01/07/2002", "file":"love.gif", "title" : "Just Looking For Love"},
+			{"date":"28/06/2002", "file":"tmbg.gif", "title" : "Misinformation"},
+			{"date":"26/06/2002", "file":"bash.gif", "title" : "Sleeping On The Job"},
+			{"date":"24/06/2002", "file":"will.gif", "title" : "More 3.0.0"},
+			{"date":"21/06/2002", "file":"kob.gif", "title" : "?ngband"},
+			{"date":"19/06/2002", "file":"grads.gif", "title" : "Graduation"},
+			{"date":"17/06/2002", "file":"yum.gif", "title" : "Tie Up Games!"},
+			{"date":"14/06/2002", "file":"moss.gif", "title" : "Moss Colored Rocks Go Well With Yams"},
+			{"date":"12/06/2002", "file":"club.gif", "title" : "Boogie Nights"},
+			{"date":"10/06/2002", "file":"hum.gif", "title" : "Another Plague"},
+			{"date":"07/06/2002", "file":"flet.gif", "title" : "Pillory"},
+			{"date":"05/06/2002", "file":"pdsm.gif", "title" : "Village God"},
+			{"date":"03/06/2002", "file":"adic.gif", "title" : "Fellow Addicts"},
+			{"date":"31/05/2002", "file":"aler.gif", "title" : "Diphenhydramine Hydrochloride"},
+			{"date":"29/05/2002", "file":"todd.gif", "title" : "Recuperation"},
+			{"date":"27/05/2002", "file":"novi.gif", "title" : "Dungeon Sex Camp Exchange"},
+			{"date":"24/05/2002", "file":"away.gif", "title" : "Oily Cuss"},
+			{"date":"22/05/2002", "file":"poop.gif", "title" : "Unsanitary"},
+			{"date":"20/05/2002", "file":"rein.gif", "title" : "Rebirth"},
+			{"date":"17/05/2002", "file":"goth.gif", "title" : "Well Done"},
+			{"date":"15/05/2002", "file":"mag.gif", "title" : "Lucky Wolf"},
+			{"date":"13/05/2002", "file":"fuxed.gif", "title" : "Dry Spell"},
+			{"date":"10/05/2002", "file":"kat.gif", "title" : "Refreshing Alternative"},
+			{"date":"08/05/2002", "file":"shift.gif", "title" : "Suspicious Looking Character"},
+			{"date":"06/05/2002", "file":"blad.gif", "title" : "So Close"},
+			{"date":"03/05/2002", "file":"det.gif", "title" : "Damn Dirty Kobolds"},
+			{"date":"01/05/2002", "file":"blind.gif", "title" : "Colorblind"},
+			{"date":"29/04/2002", "file":"kitty.gif", "title" : "Unfounded Assumptions"},
+			{"date":"26/04/2002", "file":"reta.gif", "title" : "Tight Squeeze"},
+			{"date":"24/04/2002", "file":"baday.gif", "title" : "Expect More"},
+			{"date":"22/04/2002", "file":"gramps.gif", "title" : "Stoic"},
+			{"date":"19/04/2002", "file":"nostalgia.gif", "title" : "Nostalgia"},
+			{"date":"17/04/2002", "file":"ubiq.gif", "title" : "Animal Instincts"},
+			{"date":"15/04/2002", "file":"mormons.gif", "title" : "Poor Timing"},
+			{"date":"12/04/2002", "file":"cash.gif", "title" : "Wallet of Holding"},
+			{"date":"10/04/2002", "file":"drool.gif", "title" : "Village Guinea Pig"},
+			{"date":"08/04/2002", "file":"no.gif", "title" : "Hypothetically Speaking"},
+			{"date":"05/04/2002", "file":"sdog.gif", "title" : "Getting Warmer"},
+			{"date":"03/04/2002", "file":"bliss.gif", "title" : "Bliss"},
+			{"date":"01/04/2002", "file":"dkmd.gif", "title" : "To The Death"},
+			{"date":"29/03/2002", "file":"sdk.gif", "title" : "Damn Edit Files"},
+			{"date":"27/03/2002", "file":"nekkid.gif", "title" : "No Shoes, No Shirt, No Service"},
+			{"date":"25/03/2002", "file":"ency.gif", "title" : "Piltdown Demon"},
+			{"date":"22/03/2002", "file":"co.gif", "title" : "Nadsat"},
+			{"date":"20/03/2002", "file":"spec.gif", "title" : "Physically Fit"},
+			{"date":"18/03/2002", "file":"azn.gif", "title" : "Similar Delight"},
+			{"date":"15/03/2002", "file":"cheap.gif", "title" : "Cheap Imitation"},
+			{"date":"13/03/2002", "file":"viet.gif", "title" : "Buyer Beware"},
+			{"date":"11/03/2002", "file":"stole.gif", "title" : "Prison"},
+			{"date":"08/03/2002", "file":"oil.gif", "title" : "Stained"},
+			{"date":"06/03/2002", "file":"chr.gif", "title" : "Mangy Looking @"},
+			{"date":"04/03/2002", "file":"nowords.jpg", "title" : "Words Can't Describe"},
+			{"date":"01/03/2002", "file":"nadstat.jpg", "title" : "Phrenology"},
+			{"date":"27/02/2002", "file":"pits.jpg", "title" : "A Wizard Did It"},
+			{"date":"25/02/2002", "file":"attfab.jpg", "title" : "100 Proof"},
+			{"date":"22/02/2002", "file":"nin.jpg", "title" : "With A Grain Of Salt"},
+			{"date":"20/02/2002", "file":"alco.jpg", "title" : "Good Waste"},
+			{"date":"18/02/2002", "file":"vers.jpg", "title" : "A Step Back In Development"},
+			{"date":"15/02/2002", "file":"wvane.jpg", "title" : "Dual Vanity"},
+			{"date":"13/02/2002", "file":"bright.jpg", "title" : "The Bright Side"},
+			{"date":"11/02/2002", "file":"gorg.jpg", "title" : "Good Hunting!"},
+			{"date":"08/02/2002", "file":"p-hat.jpg", "title" : "Ringilicious"},
+			{"date":"06/02/2002", "file":"mold.jpg", "title" : "Just A Little"},
+			{"date":"04/02/2002", "file":"game.jpg", "title" : "It's How You Play The Game"},
+			{"date":"01/02/2002", "file":"pix.jpg", "title" : "Graphical Melancholy"},
+			{"date":"30/01/2002", "file":"cats.jpg", "title" : "They're Watching You"},
+			{"date":"28/01/2002", "file":"angel.jpg", "title" : "Exponential Growth"},
+			{"date":"25/01/2002", "file":"suit.jpg", "title" : "Birthday Suit"},
+			{"date":"23/01/2002", "file":"dice.jpg", "title" : "Slice &amp; Dice"},
+			{"date":"21/01/2002", "file":"wyrm.jpg", "title" : "Sorry About The Last One"},
+			{"date":"18/01/2002", "file":"quake.jpg", "title" : "Erdbeben"},
+			{"date":"16/01/2002", "file":"halu.jpg", "title" : "Satisfaction Guaranteed"},
+			{"date":"14/01/2002", "file":"cmc.jpg", "title" : "Dogs, Jackals... Whatever"},
+			{"date":"11/01/2002", "file":"drolem.jpg", "title" : "Toxicology"},
+			{"date":"09/01/2002", "file":"holy.jpg", "title" : "God Speed"},
+			{"date":"07/01/2002", "file":"common.jpg", "title" : "Do You Speak Common?"},
+			{"date":"04/01/2002", "file":"explosive.jpg", "title" : "Explosive Growth"},
+			{"date":"02/01/2002", "file":"tobe.jpg", "title" : "Awwww... =)"},
+			{"date":"31/12/2001", "file":"soph.jpg", "title" : "A(n) @ of Sophistication"},
+			{"date":"28/12/2001", "file":"suxor.jpg", "title" : "Spur of the Moment"},
+			{"date":"26/12/2001", "file":"greaterowned.jpg", "title" : "Short-Sighted"},
+			{"date":"24/12/2001", "file":"xmas.jpg", "title" : "Merry Christmas!"},
+			{"date":"21/12/2001", "file":"davin.jpg", "title" : "Own A Teratology Haiku"},
+			{"date":"19/12/2001", "file":"boom.jpg", "title" : "Bakoom!"},
+			{"date":"17/12/2001", "file":"noft.jpg", "title" : "Dinner Out"},
+			{"date":"14/12/2001", "file":"bsv.jpg", "title" : "Once a BSV, Always a BSV"},
+			{"date":"12/12/2001", "file":"spoon.jpg", "title" : "Spoon-a-what?"},
+			{"date":"10/12/2001", "file":"blown.jpg", "title" : "Twisted Fate"},
+			{"date":"07/12/2001", "file":"slice.jpg", "title" : "Who Needs Cubragol?"},
+			{"date":"05/12/2001", "file":"squatting.jpg", "title" : "You Lock Your Doors for a Reason"},
+			{"date":"03/12/2001", "file":"beware.jpg", "title" : "t's Beware"},
+			{"date":"30/11/2001", "file":"who.jpg", "title" : "Who Writes This, Anyway?"},
+			{"date":"28/11/2001", "file":"surprise.jpg", "title" : "Surprise!"},
+			{"date":"26/11/2001", "file":"morph.jpg", "title" : "At Least Reality Didn't Collapse"},
+			{"date":"23/11/2001", "file":"wartribute.jpg", "title" : "A Tribute to War"},
+			{"date":"21/11/2001", "file":"r_u_learn3d.jpg", "title" : "Think Before You Activate"},
+			{"date":"19/11/2001", "file":"jelliness.jpg", "title" : "Tasty"},
+			{"date":"16/11/2001", "file":"beginning.jpg", "title" : "The Glorious Beginning"}
+        ];
+
+        // Reverse the order of comicData
+        comicData.reverse();
+
+        let currentIndex = 0;
+
+        // Function to render the selected comic
+        function renderComic(index) {
+            const selectedComic = comicData[index];
+            const comic = document.getElementById("comic");
+			const comicContainer = document.getElementById("comic-container");
+            comic.innerHTML = '';
+
+            const title = document.createElement("h2");
+            title.textContent = selectedComic.title;
+
+            const date = document.createElement("p");
+            date.textContent = `Originally published: ${selectedComic.date}`;
+
+            const image = document.createElement("img");
+            image.src = "images/"+selectedComic.file;
+            image.alt = selectedComic.title;
+
+            comic.appendChild(title);
+            comic.appendChild(date);
+            comic.appendChild(image);
+
+            comicContainer.style.display = "block";
+            document.getElementById("index-container").style.display = "none";
+        }
+
+        // Function to handle next button click
+        function nextComic() {
+            if (currentIndex < comicData.length - 1) {
+                currentIndex++;
+                renderComic(currentIndex);
+            }
+        }
+
+        // Function to handle previous button click
+        function previousComic() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                renderComic(currentIndex);
+            }
+        }
+
+        // Function to render the index
+        function renderIndex() {
+            const indexList = document.getElementById("index-list");
+            indexList.innerHTML = '';
+
+            comicData.forEach((comic, index) => {
+                const listItem = document.createElement("a");
+                listItem.textContent = `${comic.date} - ${comic.title}`;
+                listItem.href = "#";
+                listItem.addEventListener("click", () => {
+                    currentIndex = index;
+                    renderComic(currentIndex);
+                });
+                indexList.appendChild(listItem);
+                indexList.appendChild(document.createElement("br"));
+            });
+        }
+
+        // Function to toggle index visibility
+        function toggleIndex() {
+            const indexContainer = document.getElementById("index-container");
+            const comicContainer = document.getElementById("comic-container");
+            
+            if (indexContainer.style.display === "none") {
+                indexContainer.style.display = "block";
+                comicContainer.style.display = "none";
+            } else {
+                indexContainer.style.display = "none";
+                comicContainer.style.display = "block";
+            }
+        }
+
+        // Call the function to render the index and set default state on page load
+        window.onload = function() {
+            renderIndex();
+        };
+    </script>
+</head>
+<body>
+		<div id="comic-container">
+			<!-- Comic container -->
+			<div id="comic">
+				<!-- Comic content will be displayed here -->
+			</div>
+			<!-- Navigation buttons -->
+			<button onclick="previousComic()">Previous</button>
+			<button onclick="nextComic()">Next</button>
+			<button onclick="toggleIndex()">Index</button>
+		</div>
+
+		<!-- Index list container -->
+		<div id="index-container">
+			<p><img src="list.jpg" align="left" style="margin-right: 10px"><big>The Angband Comic archives</big></p>
+
+			<p>
+
+			This is an archive of an Angband inspired online comic strip written by <b>Jon Cole and Devin Kent</b> back in 2001 and 2002.
+			The original website disappeared from the face of the web long time ago.  I was unable to contact the authors, so I decided
+			to make this gem available online again, even without their consent.  I hope they will reappear one day.</p>
+
+			<p>I would like to thank <i>Dominik</i> who helped me with restoring this archive.</p>
+			<hr/>
+			<div id="index-list">
+				<!-- Index list will be displayed here -->
+			</div>
+		</div>
+</body>
+</html>
