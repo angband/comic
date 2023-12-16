@@ -5,24 +5,7 @@
     <!-- Include CSS or any necessary stylesheets -->
     <!-- Add any head content required -->
 
-    <style>
-        #index-container {
-            display: block;
-        }
-
-        #comic-container {
-            display: none;
-			text-align: center;
-        }
-		body { color: rgb(230,230,242); background-color: rgb(29,42,50); }
-		a {text-decoration: none; color: rgb(230,200,120); }
-		a:hover {text-decoration: underline; color: rgb(255,240,80); }
-		p { max-width: 720px }
-		big { font-family: Verdana, Tahoma, helvetica; font-size: 12pt; font-weight: bold }
-		div { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; }
-		div.in { padding: 20px; position: absolute; left: 0px; top: 0px; }
-		div.content { min-width: 720px; border: 1px solid rgb(133,162,179); background-color: rgb(61,80,92); padding: 3px 12px; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 
     <script>
         const comicData = [
@@ -245,8 +228,15 @@
     </script>
 </head>
 <body>
-		<div class="in">
+		<div class="in double">
 			<div class="content">
+				<div class="contbar">
+					<a href="index.html" class="akt">Comic</a>
+					<a href="fun.html">Fun</a>
+					<a href="rng.html">Name generator</a>
+					<a href="artwork.html">Site artwork</a>
+					<a href="links.html">Links</a>
+				</div>
 				<div id="comic-container">
 					<br>
 					<big>The Angband Comic</big><br>
